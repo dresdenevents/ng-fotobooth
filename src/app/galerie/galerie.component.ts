@@ -21,6 +21,7 @@ export class GalerieComponent {
     this.imageService.$latestImage.subscribe(next => {
       console.log(next)
       if (next) {
+        console.log(next)
         const reader = new FileReader();
         reader.readAsDataURL(next);
         reader.onloadend = () => {

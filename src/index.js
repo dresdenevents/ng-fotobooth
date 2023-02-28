@@ -60,9 +60,6 @@ const directoryPath = __dirname + '/uploads/';
     res.writeHead(200, { 'Content-Type': 'image/jpeg' });
     res.end(image, 'binary');
   });
-
-  //const filename = req.params.filename;
-  //res.sendFile(`${__dirname}/uploads/${filename}`);
 });
 
 app.listen(3000, () => {
