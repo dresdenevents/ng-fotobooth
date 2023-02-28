@@ -1,1 +1,6 @@
-<app-webcam></app-webcam>
+<app-webcam (webcamAvailable)="showWebcam($event)" [triggeringSnapshot]="photoTimer"></app-webcam>
+{{test | json}}
+<div #cont class="cont">
+  <div class="spinner"></div>
+  <span class="number"></span>
+</div>

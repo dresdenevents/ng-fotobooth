@@ -1,8 +1,6 @@
-import { Component, OnInit, Injectable } from '@angular/core';
+import {Component, OnInit, Output, EventEmitter, Input} from '@angular/core';
 import {Subject, Observable} from 'rxjs';
 import {WebcamImage, WebcamInitError, WebcamUtil} from 'ngx-webcam';
-import { throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
 import {ImageService} from '../../shared/image.service'
 
 @Component({
@@ -30,6 +28,10 @@ export class WebcamComponent implements OnInit{
   // switch to next / previous / specific webcam; true/false: forward/backwards, string: deviceId
   private nextWebcam: Subject<boolean|string> = new Subject<boolean|string>();
 
+  @Input() set triggeringSnapshot(photo: boolean) {
+    if (photo) this.triggerSnapshot()
+  }
+  @Output() webcamAvailable: EventEmitter<boolean> = new EventEmitter<boolean>(false)
 
   constructor(
     private imageService: ImageService
@@ -41,6 +43,7 @@ export class WebcamComponent implements OnInit{
     WebcamUtil.getAvailableVideoInputs()
       .then((mediaDevices: MediaDeviceInfo[]) => {
         this.multipleWebcamsAvailable = mediaDevices && mediaDevices.length > 1;
+        this.webcamAvailable.emit(true)
       });
   }
 
@@ -48,20 +51,8 @@ export class WebcamComponent implements OnInit{
     this.trigger.next();
   }
 
-  public toggleWebcam(): void {
-    this.showWebcam = !this.showWebcam;
-  }
-
   public handleInitError(error: WebcamInitError): void {
     this.errors.push(error);
-  }
-
-  public showNextWebcam(directionOrDeviceId: boolean|string|undefined): void {
-    if(!directionOrDeviceId) return
-    // true => move forward through devices
-    // false => move backwards through devices
-    // string => move to device with given deviceId
-    this.nextWebcam.next(directionOrDeviceId);
   }
 
   public handleImage(webcamImage: WebcamImage): void {
