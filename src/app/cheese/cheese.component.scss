@@ -14,8 +14,8 @@ body {
 
 .cont {
   display: none;
-  width: 250px;
-  height: 250px;
+  width: 125px;
+  height: 125px;
   position: fixed;
   text-align: center;
   font-weight: bold;
@@ -28,11 +28,11 @@ body {
 
   &::after {
     content: '';
-    width: 200px;
-    height: 200px;
+    width: 100px;
+    height: 100px;
     position: absolute;
-    top: 23px;
-    left: 23px;
+    top: 11px;
+    left: 10px;
     border: 1px solid #aaa;
     border-radius: 50%;
     background: #777;
@@ -47,8 +47,8 @@ body {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 125px;
-  height: 100px;
+  width: 63px;
+  height: 50px;
   transform-origin: 0 0;
   background-image: linear-gradient(black, transparent);
   animation: spin 1s infinite linear;
@@ -65,19 +65,19 @@ body {
   left: 50%;
   z-index: 2;
   transform: translate(-50%, -50%);
-  width: 250px;
-  height: 250px;
+  width: 125px;
+  height: 125px;
 
   &::after {
     content: '';
-    width: 250px;
-    height: 250px;
+    width: 125px;
+    height: 125px;
     position: absolute;
     top: 0;
     left: 0;
-    font-size: 150px;
-    line-height: 250px;
-    animation: count 5s linear;
+    font-size: 75px;
+    line-height: 125px;
+    animation: count 5s infinite;
 
     @keyframes count {
       0% { content: '5'; }
