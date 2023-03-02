@@ -25,7 +25,7 @@ window.setInterval(function() {
 
 //function to add a random margin
 function randomMargin() {
-  var num = Math.floor(Math.random() * 181) - 100,
+  var num = Math.floor(Math.random() * 161) - 100,
     starCont = document.getElementById("star-cont"),
     starContMargin = getComputedStyle(starCont).getPropertyValue("margin-left");
   num += "%"
