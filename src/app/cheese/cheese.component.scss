@@ -80,7 +80,7 @@ body {
     animation: count 5s infinite;
 
     @keyframes count {
-      0% { content: '5'; }
+      0% { content: ''; }
       20% { content: '5'; }
       40% { content: '4'; }
       60% { content: '3'; }
@@ -88,5 +88,16 @@ body {
       100% { content: '1'; }
     }
   }
+}
+
+.whiteFlash {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgb(255,255,255);
+  background: radial-gradient(circle, rgba(255,255,255,0.09007352941176472) 0%, rgba(255,255,255,1) 91%, rgba(255,255,255,1) 100%);
+  z-index: 1;
 }
 

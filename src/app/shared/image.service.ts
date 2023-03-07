@@ -1,19 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {Router} from "@angular/router";
-import {EMPTY, map, Observable, of} from "rxjs";
-import {catchError} from "rxjs/operators";
+import {BehaviorSubject, Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ImageService {
 
-  public $latestImage = new Observable<Blob | null>()
-
   constructor(
-    private http: HttpClient,
-    private router: Router
+    private http: HttpClient
     ) { }
 
 
@@ -35,14 +31,28 @@ export class ImageService {
     // HTTP-POST-Anfrage an Server senden
     this.http.post('http://localhost:3000/upload', formData, { responseType: 'text' }).subscribe(
       (response) => {
-        console.log('File uploaded successfully.')
-        if (afterUploadNavigationUrl) this.router.navigate([afterUploadNavigationUrl])
       },
       (error) => console.error('Error uploading file:', error)
     );
   }
 
-  public getImage(): void {
-    this.$latestImage = this.http.get('http://localhost:3000/image', { responseType: 'blob' })
+  public image: BehaviorSubject<string | null> = new BehaviorSubject<string | null>(null);
+
+  public getImage(fileIndex: number): Observable<string | null> {
+    const url = `http://localhost:3000/image?fileIndex=${fileIndex}`;
+    this.http.get(url, { responseType: 'blob' }).subscribe(
+      (next: Blob) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(next);
+        reader.onloadend = () => {
+          this.image.next(reader.result as string);
+        };
+      },
+      (error: any) => {
+        this.image.next(null);
+      }
+    );
+    return this.image.asObservable();
   }
+
 }

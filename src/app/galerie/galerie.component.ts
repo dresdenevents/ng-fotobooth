@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {ImageService} from "../shared/image.service";
+import {CountChooserService} from "../shared/count-chooser.service";
 
 @Component({
   selector: 'app-galerie',
@@ -8,30 +9,34 @@ import {ImageService} from "../shared/image.service";
 })
 export class GalerieComponent {
 
-  webcamImage: any
+  webcamImages: Array<string | null | undefined> = []
+  count: number = 0
 
   constructor(
-    private imageService: ImageService
+    private imageService: ImageService,
+    private counterService: CountChooserService
   ) {
   }
 
   ngOnInit() {
-    this.imageService.getImage()
-
-    this.imageService.$latestImage.subscribe(next => {
-      console.log(next)
-      if (next) {
-        console.log(next)
-        const reader = new FileReader();
-        reader.readAsDataURL(next);
-        reader.onloadend = () => {
-          this.webcamImage = reader.result as string
+    this.count = this.counterService.getCounter()
+    switch (this.count) {
+      case 1:
+        this.imageService.getImage(0).subscribe(next => {
+          if (!this.webcamImages.includes(next)) this.webcamImages.push(next);
+        });
+        break;
+      case 4:
+        for (let index = 0; index < 4; index++) {
+          this.imageService.getImage(index).subscribe(next => {
+            if (!this.webcamImages.includes(next)) this.webcamImages.push(next);
+          });
         }
-      }
-      console.log(this.webcamImage)
-    })
-
-
+        break;
+      default:
+        // todo handle other cases here
+        break;
+    }
   }
 
 }

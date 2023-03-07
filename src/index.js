@@ -43,7 +43,7 @@ app.get('/', (req, res) => {
 
 app.get('/image', (req, res, next) => {
 
-const directoryPath = __dirname + '/uploads/';
+  const directoryPath = __dirname + '/uploads/';
   fs.readdir(directoryPath, function (err, files) {
     if (err) {
       return next(err);
@@ -51,12 +51,23 @@ const directoryPath = __dirname + '/uploads/';
     if (files.length === 0) {
       return res.status(404).send('No image found');
     }
-    const newestFile = files.reduce((prev, current) => {
-      const prevTimestamp = fs.statSync(directoryPath + prev).mtime.getTime();
-      const currentTimestamp = fs.statSync(directoryPath + current).mtime.getTime();
-      return prevTimestamp > currentTimestamp ? prev : current;
+
+    let fileIndex = req.query.fileIndex || 0; // Default to latest image
+    fileIndex = parseInt(fileIndex, 10);
+    if (fileIndex >= files.length) {
+      fileIndex = files.length - 1;
+    } else if (fileIndex < 0) {
+      fileIndex = 0;
+    }
+
+    const sortedFiles = files.sort((a, b) => {
+      const aTimestamp = fs.statSync(directoryPath + a).mtime.getTime();
+      const bTimestamp = fs.statSync(directoryPath + b).mtime.getTime();
+      return bTimestamp - aTimestamp;
     });
-    const image = fs.readFileSync(directoryPath + newestFile);
+
+    const imageFile = sortedFiles[fileIndex];
+    const image = fs.readFileSync(directoryPath + imageFile);
     res.writeHead(200, { 'Content-Type': 'image/jpeg' });
     res.end(image, 'binary');
   });

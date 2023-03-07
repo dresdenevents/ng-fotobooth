@@ -1,7 +1,16 @@
 <div class="galerie">
-  <div class="snapshot" *ngIf="webcamImage">
-    <img [src]="webcamImage"/>
+  <div *ngIf="count == 1">
+    <div class="snapshot" *ngIf="webcamImages[1]">
+      <img [src]="webcamImages[1]"/>
+    </div>
   </div>
 
+  <div class="sm-images" *ngIf="count != 1">
+    <div class="flex-images" *ngFor="let image of webcamImages">
+      <div class="snapshot" *ngIf="image">
+        <img class="sm-img" [src]="image"/>
+      </div>
+    </div>
+  </div>
   <button routerLink="">Neues Bild aufnehmen</button>
 </div>

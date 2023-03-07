@@ -4,3 +4,16 @@
   align-items: center;
 }
 
+.sm-images {
+  display: flex;
+  flex: 2;
+  flex-direction: row-reverse;
+  max-width: 80%;
+  width: 70%;
+  justify-content: center;
+  flex-wrap: wrap-reverse;
+}
+
+.sm-img {
+  width: 400px;
+}

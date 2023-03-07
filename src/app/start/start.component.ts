@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {CountChooserService} from "../shared/count-chooser.service";
 
 @Component({
   selector: 'app-start',
@@ -7,11 +8,12 @@ import { Component } from '@angular/core';
 })
 export class StartComponent {
 
-constructor(
-//private router: Routes
-  ) {}
+  constructor(
+    private countChooserService: CountChooserService
+  ) {
+  }
 
-  navigate() {
-    //this.router.navigate('cheese')
+  setImageIndex(index: number) {
+    this.countChooserService.setCounter(index as (1 | 4))
   }
 }

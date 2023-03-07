@@ -29,7 +29,7 @@ import { GalerieComponent } from './galerie/galerie.component';
     WebcamModule,
     HttpClientModule
   ],
-  providers: [ImageService],
+  providers: [ImageService, WebcamComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
