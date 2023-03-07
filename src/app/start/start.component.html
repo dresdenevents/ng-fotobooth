@@ -1,3 +1,37 @@
+<div class="start">
+  <div class="button-group">
+    <button routerLink="/cheese" (click)="setImageIndex(1)" class="one-pic">
 
-<button routerLink="/cheese" (click)="setImageIndex(1)">1 Bild</button>
-<button routerLink="/cheese" (click)="setImageIndex(4)" style="margin-left: 10px">4 Bilder</button>
+      <svg width="180" height="180" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="m15.636 13.086c-1.4165-0.32798-2.7369-0.61496-2.0979-1.8223 1.9481-3.6742 0.51742-5.6393-1.5381-5.6393-2.0951 0-3.4904 2.04-1.5381 5.6393 0.65737 1.2144-0.71251 1.5014-2.0979 1.8223-1.4194 0.32798-1.3105 1.0758-1.3105 2.4344h9.8931c0-1.3586 0.10886-2.1064-1.3105-2.4344zm-14.239-13.089v24.006h21.206v-24.006zm18.378 18.351h-15.551v-15.551h15.551z"
+          stroke-width="1.4137"/>
+      </svg>
+
+      <div class="font-big">1 Bild</div>
+
+    </button>
+    <button routerLink="/cheese" (click)="setImageIndex(4)" class="four-pics">
+
+      <div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" viewBox="0 0 24 24" fill="white">
+          <path
+            d="M18.072 16.278c-1.002-.232-1.936-.435-1.484-1.289 1.378-2.599.366-3.989-1.088-3.989-1.482 0-2.469 1.443-1.088 3.989.465.859-.504 1.062-1.484 1.289-1.004.232-.927.761-.927 1.722h6.998c0-.961.077-1.49-.927-1.722zm-10.072-9.259v16.981h15v-16.981h-15zm13 12.981h-11v-11h11v11zm-15-1.132l-5-13.738 14.095-5.13 1.827 5h-2.128l-.9-2.455-10.38 3.778 2.486 6.832v5.713z"/>
+        </svg>
+
+        <div class="font-big">4 Bilder</div>
+      </div>
+    </button>
+  </div>
+
+  <p class="daten">Mit der Nutzung der Fotobox stimmst du der Verarbeitung und Speicherung deiner Bilder zu.
+    Die Bilder werden mit Erstellung online gespeichert und nach der Veranstaltung
+    <strong>nur </strong>
+    für dich und die anderen Gäste über Google Photos zugänglich gemacht.
+  </p>
+  <p class="daten" style="margin-top: 0">
+    Die Bilder werden <strong>nicht</strong> an Dritte weitergegeben.
+    Bei Fragen wende dich bitte an
+    <a href="https://dresdenevents.github.io/index.html" class="link">dresdenevents</a>
+  </p>
+</div>

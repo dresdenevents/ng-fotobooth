@@ -1,0 +1,39 @@
+.start {
+  color: gray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.button-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+.daten {
+  font-size: small;
+  width: 61%;
+  margin-top: 30px
+}
+
+.link {
+  text-decoration: none;
+  border-bottom: dotted 1px;
+  color: inherit;
+}
+
+.font-big {
+  font-size: 48px;
+}
+
+.one-pic {
+  height: 300px;
+  background-color: #ff5e00;
+}
+
+.four-pics {
+  margin-left: 10px; height: 300px
+}
